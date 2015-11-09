@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd" ><!--default-lazy-init="true">-->
+
+	<!-- Type instantiation of bean -->
+
+	<!-- By ctor -->
+	<bean	id="defaultBean"
+			class="SpringRefGroupId.SpringReference.BeanOverview.DefaultBean"
+			lazy-init="true">
+	</bean>
+
+	<!-- By static method -->
+	<bean 	id="clientInstance" 
+			class="SpringRefGroupId.SpringReference.BeanOverview.ClientInstance"
+			factory-method="getIntstance">
+	</bean>
+	
+	<!-- Factory beans -->
+	<bean	id="serviceLocator"
+			class="SpringRefGroupId.SpringReference.BeanOverview.DefaultServiceLocator">
+	</bean>
+	
+	<!-- By factory, (factory-bean=serviceLocator) is a factory for service bean -->
+	<bean	id="service"
+			factory-bean="serviceLocator"
+			factory-method="getService">
+	</bean>
+	
+</beans>
